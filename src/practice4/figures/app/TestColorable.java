@@ -8,11 +8,11 @@ public class TestColorable {
         GeometricObject[] figures = null;
         try{
             figures = new GeometricObject[] {
-                new Circle(9, "Белый", true),
-                new ComparableCircle(2, "Зеленый", false),
-                new Rectangle(3, 4, "Синий", true),
-                new Square(5),
-                new Triangle(3, 4, 5, "Красный", true),
+                new Circle(12, "Желтый", true),
+                new ComparableCircle(8, "Оранжевый", false),
+                new Rectangle(7, 9, "Голубой", true),
+                new Square(6),
+                new Triangle(5, 6, 7, "Розовый", true),
             };
         } catch(IllegalTriangleException e) {
             System.out.println("Ошибка: " + e.getMessage());

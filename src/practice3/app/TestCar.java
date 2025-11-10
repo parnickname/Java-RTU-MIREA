@@ -5,30 +5,30 @@ import practice3.vehicles.*;
 public class TestCar {
     public static void main(String[] args) {
         Vehicle passat = new Car(
-                "VW Passat",
-                "A234AA77",
-                "White",
-                2011,
-                "Artem A",
-                "INS12345",
+                "BMW 5 Series",
+                "M555BM99",
+                "Gray",
+                2017,
+                "Vladimir S",
+                "INS67890",
                 "Petrol"
         );
 
         Vehicle spectre = new ElectricCar(
-                "Rolls-Royce Spectre",
-                "A777MP77",
-                "Black",
-                2024,
-                "Artem A",
-                "INS98765",
-                102
+                "Porsche Taycan",
+                "P888PT77",
+                "White",
+                2023,
+                "Elena R",
+                "INS24680",
+                85
         );
 
-        passat.setYear(2015);
-        passat.setOwnerName("Ivan Ivanov");
+        passat.setYear(2020);
+        passat.setOwnerName("Nikolai Sokolov");
 
-        spectre.setInsuranceNumber("INS00001");
-        spectre.setOwnerName("Sergey Sergeev");
+        spectre.setInsuranceNumber("INS33344");
+        spectre.setOwnerName("Maria Petrova");
 
         System.out.println("Информация о Car:");
         System.out.println(passat);
@@ -36,7 +36,7 @@ public class TestCar {
         System.out.println("\nИнформация о Electric Car:");
         System.out.println(spectre);
 
-        ((ElectricCar) spectre).setBatteryCapacity(120);
+        ((ElectricCar) spectre).setBatteryCapacity(93);
         int battery = ((ElectricCar) spectre).getBatteryCapacity();
         System.out.println("Battery capacity (после изменения): " + battery + " kWh");
     }

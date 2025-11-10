@@ -7,14 +7,14 @@ import practice4.figures.geometry.Rectangle;
 
 public class TestCompare {
     public static void main(String[] args) {
-        Circle circle1 = new Circle(9, "Белый", true);
-        Circle circle2 = new Circle(4, "Черный",  false);
+        Circle circle1 = new Circle(11, "Серый", true);
+        Circle circle2 = new Circle(7, "Коричневый",  false);
 
-        ComparableCircle comparableCircle1 = new ComparableCircle(2, "Зеленый", false);
-        ComparableCircle comparableCircle2 = new ComparableCircle(5, "Красный", true);
+        ComparableCircle comparableCircle1 = new ComparableCircle(4, "Бирюзовый", false);
+        ComparableCircle comparableCircle2 = new ComparableCircle(9, "Малиновый", true);
 
-        Rectangle rectangle1 = new Rectangle(3, 4, "Синий", true);
-        Rectangle rectangle2 = new Rectangle(5, 5, "Фиолетовый", true);
+        Rectangle rectangle1 = new Rectangle(6, 8, "Лиловый", true);
+        Rectangle rectangle2 = new Rectangle(10, 10, "Персиковый", true);
 
         System.out.println("Circle1 " + circle1 + "\n");
         System.out.println("Circle2 " + circle2 + "\n");

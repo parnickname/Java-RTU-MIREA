@@ -6,8 +6,8 @@ public class App {
         MediaPlayer mp3 = new MP3Player();
         MediaPlayer wav = new WAVtoMP3Adapter();
 
-        String mp3file = "track1.mp3";
-        String wavfile = "track2.wav";
+        String mp3file = "song5.mp3";
+        String wavfile = "audio3.wav";
 
         mp3.play(mp3file);
         wav.play(wavfile);

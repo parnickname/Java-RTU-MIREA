@@ -17,12 +17,12 @@ public class TestFindMaxCircle {
 
     public static void main(String[] args) {
         ArrayList<Circle> arr = new ArrayList<>(List.of(
-                new Circle(1),
-                new Circle(14),
-                new Circle(678),
-                new Circle(691),
-                new Circle(78),
-                new Circle(342)
+                new Circle(25),
+                new Circle(89),
+                new Circle(512),
+                new Circle(743),
+                new Circle(156),
+                new Circle(298)
         ));
 
         System.out.println("Индекс круга с наибольшим радиусом: " + findMaxCircle(arr));
