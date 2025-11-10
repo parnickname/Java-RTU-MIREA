@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class YuanToRoubles {
     public static void main(String[] args) {
-        final double ROUBLES_PER_YUAN = 11.91;
+        final double ROUBLES_PER_YUAN = 12.45;
         int yuan, digit;
         double roubles;
         String s;

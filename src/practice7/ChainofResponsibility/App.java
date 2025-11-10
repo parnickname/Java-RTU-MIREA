@@ -4,9 +4,9 @@ public class App {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.createLogger();
 
-        logger.log("INFO", "Created new user");
-        logger.log("WARNING", "This password is simple - recommended to use another");
-        logger.log("ERROR", "Invalid email");
+        logger.log("INFO", "User authentication successful");
+        logger.log("WARNING", "Password expires in 5 days - consider updating it");
+        logger.log("ERROR", "Connection timeout to database");
     }
 
 

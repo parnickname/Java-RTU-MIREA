@@ -5,32 +5,32 @@ import practice2.vehicles.*;
 public class TestCar {
     public static void main(String[] args) {
         Vehicle passat = new Car(
-                "VW Passat",
-                "A234AA77",
-                "White",
-                2011,
-                "Artem A",
-                "INS12345",
-                "Petrol"
+                "Audi A6",
+                "C789MN99",
+                "Blue",
+                2016,
+                "Dmitry P",
+                "INS54321",
+                "Diesel"
         );
 
-        Vehicle spectre = new ElectricCar("Rolls-Royce Spectre",
-                "A777MP77",
-                "Black",
-                2024,
-                "Artem A",
-                "INS98765",
-                102
+        Vehicle spectre = new ElectricCar("Tesla Model S",
+                "E123TT77",
+                "Red",
+                2022,
+                "Oleg K",
+                "INS87654",
+                95
         );
 
-        passat.setColor("Grey");
-        passat.setOwnerName("Ivan Ivanov");
-        passat.setYear(2015);
+        passat.setColor("Black");
+        passat.setOwnerName("Maxim Petrov");
+        passat.setYear(2019);
 
-        spectre.setOwnerName("Sergey Sergeev");
-        spectre.setInsuranceNumber("INS00001");
+        spectre.setOwnerName("Anna Volkova");
+        spectre.setInsuranceNumber("INS11122");
 
-        ((ElectricCar) spectre).setBatteryCapacity(120);
+        ((ElectricCar) spectre).setBatteryCapacity(105);
 
         System.out.println(passat);
         System.out.println("\n");

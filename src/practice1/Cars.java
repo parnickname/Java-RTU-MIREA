@@ -9,10 +9,10 @@ public class Cars {
         Scanner input = new Scanner(System.in);
 
         Car vw = new Car(
-                "Passat",
-                "White",
-                "A301OH197",
-                2011
+                "Tiguan",
+                "Silver",
+                "B456KX177",
+                2018
         );
 
         vw.To_String();

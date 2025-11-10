@@ -21,11 +21,11 @@ public class DeleteDuplicatesAndLinearSearch {
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>(List.of(1, 1, 5, 1, 5, 6, 5, 6, 3));
+        ArrayList<Integer> list = new ArrayList<>(List.of(7, 7, 3, 7, 3, 9, 3, 9, 2));
         System.out.println(list);
         list = deleteDuplicates(list);
         System.out.println(list);
 
-        System.out.println(linearSearch(list, 5));
+        System.out.println(linearSearch(list, 3));
     }
 }

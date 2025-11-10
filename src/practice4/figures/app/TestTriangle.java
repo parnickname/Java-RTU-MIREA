@@ -16,8 +16,8 @@ public class TestTriangle {
             String line = sc.nextLine().trim();
 
             if (line.isEmpty()) {
-                System.out.println("Значения не были заданы — будут использованы по умолчанию: 1.0, 1.0, 1.0");
-                line = "1.0 1.0 1.0";
+                System.out.println("Значения не были заданы — будут использованы по умолчанию: 5.0, 6.0, 7.0");
+                line = "5.0 6.0 7.0";
             }
 
             String[] parts = line.split("\\s+");

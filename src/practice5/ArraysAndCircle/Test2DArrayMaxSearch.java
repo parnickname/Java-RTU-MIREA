@@ -32,9 +32,9 @@ public class Test2DArrayMaxSearch {
 
     public static void main(String[] args) {
         Integer[][] intArr = {
-                {1, 2, 3},
-                {67, 54, 21},
-                {0, -213, 34}
+                {15, 42, 8},
+                {91, 37, 63},
+                {22, -105, 58}
         };
 
         Result<Integer> res = max(intArr);
