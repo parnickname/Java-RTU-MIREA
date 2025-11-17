@@ -14,20 +14,20 @@ public class AppSettings {
     }
 
     public static AppSettings getInstance() {
-        AppSettings result = instance;
-        if (result == null) {
+        if (instance == null) {
             synchronized (AppSettings.class) {
-                result = instance;
-                if (result == null) {
-                    instance = result = new AppSettings();
+                if (instance == null) {
+                    instance = new AppSettings();
                 }
             }
         }
-        return result;
+        return instance;
     }
 
     public String getSetting(String settingName) {
-        if (!settings.containsKey(settingName)) throw new NoSuchElementException("данная настройка не существует");
+        if (!settings.containsKey(settingName)) {
+            throw new NoSuchElementException("данная настройка не существует");
+        }
         return settings.get(settingName);
     }
 

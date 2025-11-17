@@ -36,14 +36,13 @@ public class StackOnQueue<E> {
     }
 
     public E pop() {
-        E o = null;
         if (myStack.isEmpty()) throw new NoSuchElementException("стек пуст");
         while (myStack.size() > 1) {
             copyStack.add(myStack.poll());
         }
-        o = myStack.poll();
+        E o = myStack.poll();
         swapStacks();
-        return copyStack.poll();
+        return o;
     }
 
     public boolean empty() {

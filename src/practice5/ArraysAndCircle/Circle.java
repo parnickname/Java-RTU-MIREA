@@ -8,10 +8,6 @@ public class Circle implements Comparable<Circle> {
     }
 
     public int compareTo(Circle o) {
-        if (this.radius > o.radius) {
-            return 1;
-        }
-
-        return 0;
+        return Integer.compare(this.radius, o.radius);
     }
 }

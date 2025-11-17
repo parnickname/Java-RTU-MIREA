@@ -1,28 +1,26 @@
 package practice5.MyStack;
 
-import practice5.GenericStack.GenericStack2;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MyStackExtArrL extends ArrayList {
-    MyStackExtArrL() {
+public class MyStackExtArrL<E> extends ArrayList<E> {
+    public MyStackExtArrL() {
         super();
     }
 
-    MyStackExtArrL(MyStackExtArrL list) {
+    public MyStackExtArrL(MyStackExtArrL<E> list) {
         super(list);
     }
 
     public static void main(String[] args) {
-        MyStackExtArrL myStack = new MyStackExtArrL();
+        MyStackExtArrL<String> myStack = new MyStackExtArrL<>();
         Scanner sc = new Scanner(System.in);
 
-        for(int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             myStack.add(sc.next());
         }
 
-        while(!myStack.isEmpty()){
+        while (!myStack.isEmpty()) {
             System.out.println(myStack.removeLast());
         }
     }
