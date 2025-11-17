@@ -1,9 +1,5 @@
 package practice6.DesignPatterns.FactoryMethod;
 
-/*
-Тестовый класс для DeliveryService. Можно реализовать ввод с клавиатуры (при необходимости)
- */
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 

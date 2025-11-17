@@ -1,5 +1,3 @@
-//Вариант 1
-
 package practice6.DesignPatterns.Singleton;
 
 import java.util.Map;
