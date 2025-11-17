@@ -27,24 +27,20 @@ public class GenericStack1<E> {
     }
 
     public E pop() {
-        E o = arr[top--];
-        return o;
+        return arr[top--];
     }
 
     public boolean isEmpty() {
-        if (top < 0) {
-            return true;
-        }
-        return false;
+        return top < 0;
     }
 
     @Override
     public String toString() {
-        String line = "";
-        for (int i = 0; i < arr.length; i++) {
-            line += arr[i] + " ";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <= top; i++) {
+            sb.append(arr[i]).append(" ");
         }
-        return line;
+        return sb.toString();
     }
 
     public static void main(String[] args) {

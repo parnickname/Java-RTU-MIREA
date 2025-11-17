@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class TestFindMaxCircle {
     static int findMaxCircle(ArrayList<Circle> circles) {
         int maxIndex = 0;
-        for (int i = 0; i < circles.size() - 1; i++) {
-            if (circles.get(i).compareTo(circles.get(i + 1)) > 0) {
+        for (int i = 1; i < circles.size(); i++) {
+            if (circles.get(i).compareTo(circles.get(maxIndex)) > 0) {
                 maxIndex = i;
             }
         }

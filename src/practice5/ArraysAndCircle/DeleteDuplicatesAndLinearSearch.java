@@ -4,10 +4,7 @@ import java.util.*;
 
 public class DeleteDuplicatesAndLinearSearch {
     static <T> int linearSearch(ArrayList<T> list, T target) {
-        if (list.contains(target)) {
-            return list.indexOf(target);
-        }
-        return -1;
+        return list.indexOf(target);
     }
 
     static <T> ArrayList<T> deleteDuplicates(ArrayList<T> list) {

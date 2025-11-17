@@ -16,24 +16,12 @@ public class MyStack<E> {
         list.add(o);
     }
 
-    /*Второй вариант pop & peek:
-    public E pop(){
-        if(list.isEmpty()) throw IllegalStateException("стек пуст");
-        return list.remove(list.size() - 1);
-    }
-
-    public E peek(){
-        if(list.isEmpty()) throw new IllegalStateException("стек пуст");
-        return list.get(list.size() - 1));
-    }
-     */
-
     public E pop() {
         return list.removeLast();
     }
 
     public E peek() {
-        return list.getFirst();
+        return list.getLast();
     }
 
     public int getSize(){

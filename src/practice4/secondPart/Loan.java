@@ -29,6 +29,9 @@ public class Loan {
 
     /** Set a new annualInterestRate */
     public void setAnnualInterestRate(double annualInterestRate) {
+        if (annualInterestRate <= 0) {
+            throw new IllegalArgumentException("процентная ставка должна быть больше нуля");
+        }
         this.annualInterestRate = annualInterestRate;
     }
 
@@ -39,6 +42,9 @@ public class Loan {
 
     /** Set a new numberOfYears */
     public void setNumberOfYears(int numberOfYears) {
+        if (numberOfYears <= 0) {
+            throw new IllegalArgumentException("срок кредита должен быть больше 0");
+        }
         this.numberOfYears = numberOfYears;
     }
 
@@ -49,21 +55,21 @@ public class Loan {
 
     /** Set a newloanAmount */
     public void setLoanAmount(double loanAmount) {
+        if (loanAmount <= 0) {
+            throw new IllegalArgumentException("сумма кредита должна быть больше 0");
+        }
         this.loanAmount = loanAmount;
     }
 
     /** Find monthly payment */
     public double getMonthlyPayment() {
         double monthlyInterestRate = annualInterestRate / 1200;
-        double monthlyPayment = loanAmount * monthlyInterestRate / (1 -
-                (1 / Math.pow(1 + monthlyInterestRate, numberOfYears * 12)));
-        return monthlyPayment;
+        return loanAmount * monthlyInterestRate / (1 - (1 / Math.pow(1 + monthlyInterestRate, numberOfYears * 12)));
     }
 
     /** Find total payment */
     public double getTotalPayment() {
-        double totalPayment = getMonthlyPayment() * numberOfYears * 12;
-        return totalPayment;
+        return getMonthlyPayment() * numberOfYears * 12;
     }
 
     /** Return loan date */
