@@ -1,9 +1,5 @@
 package practice6.DesignPatterns.FactoryMethod;
 
-/*
-Реализация порождающего паттерна Factory Method.
- */
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
