@@ -30,16 +30,6 @@ sudo pacman -S python python-pip tk
 ### 2. Install Dependencies
 
 ```bash
-# Required for drag & drop
-pip install tkinterdnd2
-
-# Required for password-protected archives
-pip install pyzipper
-```
-
-Or install from requirements:
-
-```bash
 pip install -r requirements.txt
 ```
 
@@ -60,25 +50,16 @@ python retro_zip.py
 | Delete | Remove selected |
 | F1 | Help |
 
-## Screenshots
-
-The application features:
-- Navy blue and teal color scheme
-- Animated marquee banner
-- 3D beveled buttons
-- Retro "visitor counter"
-- Classic Windows 95 style UI elements
-
 ## Requirements
 
 - Python 3.6+
 - Tkinter (included with Python on most systems)
-- tkinterdnd2 (optional, for drag & drop)
-- pyzipper (optional, for encryption)
+- tkinterdnd2 (for drag & drop)
+- pyzipper (for encryption)
 
 ## License
 
-MIT License - Free to use and modify!
+MIT License
 
 ---
 
