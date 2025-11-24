@@ -1,69 +1,85 @@
-# Java — RTU MIREA
+# RETRO ZIP UTILITY v1.0
 
-Учебный репозиторий по курсу «Программирование на Java» (РТУ-МИРЭА). Здесь собраны исходники, практические задания и небольшие демонстрационные программы.
+```
+╔══════════════════════════════════════════════════════════════════╗
+║  RETRO ZIP UTILITY v1.0 - The Ultimate Archive Manager!          ║
+║  ════════════════════════════════════════════════════════════    ║
+║  A nostalgic trip back to the golden age of the web!             ║
+╚══════════════════════════════════════════════════════════════════╝
+```
 
----
+A fully-featured ZIP archive manager with a classic 90s web aesthetic, built for Arch Linux.
 
-## Навигация
+## Features
 
-- 📦 **Исходники**: [`/src`](./src)
-- 📚 Практики:
-    - [Практика 1](./ПнЯД_практика_1.docx) → [код](./src/practice1)
-    - [Практика 2](./ПнЯД_практика_2.docx) → [код](./src/practice2)
-    - [Практика 3](./ПнЯД_практика_3.docx) → [код](./src/practice3)
-    - [Практика 4](./ПнЯД_практика_4.docx) → [код](./src/practice4)
-    - [Практика 5](./ПнЯД_практика_5.docx) → [код](./src/practice5)
-    - [Практика 6](./ПнЯД_практика_6.docx) → [код](./src/practice6)
-    - [Практика 7](./ПнЯД_практика_7.docx) → [код](./src/practice7)
-    - [Практика 8](./ПнЯД_практика_8.docx) → [код](./src/practice8)
+- **Create/Open ZIP archives** - Full ZIP file support
+- **Drag & Drop** - Drop files to add, drop ZIPs to open
+- **Password Protection** - AES-256 encryption support
+- **Adjustable Compression** - Levels 0-9
+- **File Viewer** - View text files directly
+- **Retro Theme** - Classic 90s web design with animated marquee
 
-> В каждой папке `practiceX` лежат соответствующие Java-классы, тестовые программы и вспомогательные файлы.
+## Installation on Arch Linux
 
----
+### 1. Install Python and Tkinter
 
-## Быстрый старт
-
-### В IntelliJ IDEA
-1. Открой папку репозитория → **File → Open…** (`/src` должен быть помечен как *Sources Root*).
-2. Убедись, что выбран JDK (рекомендуется 17+): **File → Project Structure → Project SDK**.
-3. Запусти любой класс с `public static void main(...)` (например, `TestTriangle`/`TestCompare`) через зелёный ▶.
-
-### В Visual Studio Code
-1. Установи расширения:
-    - [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
-    - (опционально) [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
-
-2. Убедись, что JDK установлен и прописан в `PATH` (проверь командой `java -version`).
-
-3. Открой папку репозитория в VS Code (**File → Open Folder…**).
-
-4. Настрой рабочую папку:
-    - В `src` должны лежать все пакеты (`practice1`, `practice2`, …).
-    - VS Code автоматически распознает `src` как *Sources Root*.  
-      Если нет → открой `.vscode/settings.json` и добавь:
-      ```json
-      {
-        "java.project.sourcePaths": ["src"]
-      }
-      ```
-
-5. Запуск:
-    - Открой любой класс с методом `public static void main(String[] args)`.
-    - Вверху над методом появится кнопка **Run | Debug**.
-    - Нажми **Run** для запуска программы.
-
-6. Запуск через терминал:
-   ```bash
-   # компиляция
-   javac -d out $(find src -name "*.java")
-   # запуск (пример для practice4.app.TestTriangle)
-   java -cp out practice4.app.TestTriangle
-   
-
-### Через терминал (macOS/Linux)
 ```bash
-# из корня репозитория
-find src -name "*.java" > sources.txt
-javac -d out @sources.txt
-# пример запуска (замени на свой пакет/класс с main):
-java -cp out practice4.app.TestTriangle
+sudo pacman -S python python-pip tk
+```
+
+### 2. Install Dependencies
+
+```bash
+# Required for drag & drop
+pip install tkinterdnd2
+
+# Required for password-protected archives
+pip install pyzipper
+```
+
+Or install from requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the Application
+
+```bash
+python retro_zip.py
+```
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| Ctrl+N | Create new archive |
+| Ctrl+O | Open archive |
+| Ctrl+A | Select all files |
+| Ctrl+E | Extract all |
+| Delete | Remove selected |
+| F1 | Help |
+
+## Screenshots
+
+The application features:
+- Navy blue and teal color scheme
+- Animated marquee banner
+- 3D beveled buttons
+- Retro "visitor counter"
+- Classic Windows 95 style UI elements
+
+## Requirements
+
+- Python 3.6+
+- Tkinter (included with Python on most systems)
+- tkinterdnd2 (optional, for drag & drop)
+- pyzipper (optional, for encryption)
+
+## License
+
+MIT License - Free to use and modify!
+
+---
+
+*Best viewed with Netscape Navigator 4.0*
