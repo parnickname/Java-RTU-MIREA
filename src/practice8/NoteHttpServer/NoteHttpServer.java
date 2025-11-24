@@ -11,125 +11,114 @@ public class NoteHttpServer {
 
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Note HTTP Server запущен на порту " + PORT);
+            System.out.println("Note HTTP Server started on port " + PORT);
+            
             while (true) {
-                try (Socket clientSocket = serverSocket.accept();
-                     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
-                    String inputLine;
-                    StringBuilder request = new StringBuilder();
-                    while ((inputLine = in.readLine()) != null && !inputLine.isEmpty()) {
-                        request.append(inputLine).append("\n");
-                    }
-                    String[] requestLines = request.toString().split("\n");
-                    String method = requestLines[0].split(" ")[0];
-                    String path = requestLines[0].split(" ")[1];
-                    String response;
-                    if (method.equals("GET") && path.equals("/notes")) {
-                        response = "HTTP/1.1 200 OK\r\n" +
-                                "Content-Type: text/html\r\n" +
-                                "\r\n" +
-                                "<html><body><h1>Notes</h1><ul>";
-                        for (String note : notes) {
-                            response += "<li>" + note + "</li>";
-                        }
-                        response += "</ul></body></html>";
-                    } else if (method.equals("POST") && path.equals("/add")) {
-                        String note = requestLines[requestLines.length - 1].trim();
-                        if (!note.isEmpty()) {
-                            notes.add(note);
-                            response = "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>Note added</h1></body></html>";
-                        } else {
-                            response = "HTTP/1.1 400 Bad Request\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>Empty note</h1></body></html>";
-                        }
-                    } else if (method.equals("POST") && path.equals("/remove")) {
-                        if (!notes.isEmpty()) {
-                            notes.remove(notes.size() - 1);
-                            response = "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>Last note removed</h1></body></html>";
-                        } else {
-                            response = "HTTP/1.1 400 Bad Request\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>No notes to remove</h1></body></html>";
-                        }
-                    } else if (method.equals("POST") && path.startsWith("/edit")) {
-                        String query = null;
-
-                        if (path.contains("?")) {
-                            String[] parts = path.split("\\?", 2);
-                            query = parts[1];
-                        }
-
-                        Map<String, String> params = new HashMap<>();
-
-                        if (query != null) {
-                            for (String param : query.split("&")) {
-                                String[] kv = param.split("=", 2);
-
-                                String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
-                                String value = kv.length > 1
-                                        ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8)
-                                        : "";
-
-                                params.put(key, value);
-                            }
-                        }
-
-                        int index = toInt(params, "index");
-                        String text = params.get("text");
-
-                        if (index < 0 || index >= notes.size()) {
-                            response = "HTTP/1.1 400 Bad Request\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>invalid note index</h1></body></html>";
-                        }
-                        else if (text == null || text.isEmpty()) {
-                            response = "HTTP/1.1 400 Bad Request\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>invalid note text</h1></body></html>";
-                        }
-                        else {
-                            notes.set(index, text);
-                            response = "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: text/html\r\n" +
-                                    "\r\n" +
-                                    "<html><body><h1>Note updated</h1></body></html>";
-                        }
-                    } else {
-                        response = "HTTP/1.1 404 Not Found\r\n" +
-                                "Content-Type: text/html\r\n" +
-                                "\r\n" +
-                                "<html><body><h1>404 Not Found</h1></body></html>";
-                    }
-                    out.print(response);
+                try (Socket client = serverSocket.accept()) {
+                    handleRequest(client);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static int toInt(Map<String, String> params, String key) {
-        try {
-            if (params.containsKey(key)) {
-                return Integer.parseInt(params.get(key));
-            }
-        } catch (Exception ignored) {}
+    private static void handleRequest(Socket client) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 
-        return -1;
+        String requestLine = in.readLine();
+        if (requestLine == null) return;
+
+        // Skip headers
+        while (in.readLine() != null && !in.readLine().isEmpty());
+
+        String[] parts = requestLine.split(" ");
+        String method = parts[0];
+        String path = parts[1];
+
+        String response = routeRequest(method, path);
+        out.print(response);
+    }
+
+    private static String routeRequest(String method, String path) {
+        if (method.equals("GET") && path.equals("/notes")) {
+            return buildNotesPage();
+        }
+        
+        if (method.equals("POST") && path.equals("/add")) {
+            notes.add("New note");
+            return buildResponse(200, "Note added");
+        }
+        
+        if (method.equals("POST") && path.equals("/remove")) {
+            if (!notes.isEmpty()) {
+                notes.remove(notes.size() - 1);
+                return buildResponse(200, "Note removed");
+            }
+            return buildResponse(400, "No notes to remove");
+        }
+        
+        if (method.equals("POST") && path.startsWith("/edit")) {
+            return handleEdit(path);
+        }
+        
+        return buildResponse(404, "Not Found");
+    }
+
+    private static String handleEdit(String path) {
+        Map<String, String> params = parseQuery(path);
+        
+        int index = parseInt(params.get("index"));
+        String text = params.get("text");
+
+        if (index < 0 || index >= notes.size() || text == null || text.isEmpty()) {
+            return buildResponse(400, "Invalid parameters");
+        }
+
+        notes.set(index, text);
+        return buildResponse(200, "Note updated");
+    }
+
+    private static Map<String, String> parseQuery(String path) {
+        Map<String, String> params = new HashMap<>();
+        
+        if (!path.contains("?")) return params;
+
+        String query = path.split("\\?")[1];
+        for (String param : query.split("&")) {
+            String[] kv = param.split("=", 2);
+            String key = URLDecoder.decode(kv[0], StandardCharsets.UTF_8);
+            String value = kv.length > 1 ? URLDecoder.decode(kv[1], StandardCharsets.UTF_8) : "";
+            params.put(key, value);
+        }
+        
+        return params;
+    }
+
+    private static int parseInt(String value) {
+        try {
+            return value != null ? Integer.parseInt(value) : -1;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    private static String buildNotesPage() {
+        StringBuilder html = new StringBuilder("<html><body><h1>Notes</h1><ul>");
+        for (String note : notes) {
+            html.append("<li>").append(note).append("</li>");
+        }
+        html.append("</ul></body></html>");
+        
+        return "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + html;
+    }
+
+    private static String buildResponse(int code, String message) {
+        String status = code == 200 ? "OK" : code == 400 ? "Bad Request" : "Not Found";
+        return String.format("HTTP/1.1 %d %s\r\nContent-Type: text/html\r\n\r\n<html><body><h1>%s</h1></body></html>", 
+                           code, status, message);
     }
 }
