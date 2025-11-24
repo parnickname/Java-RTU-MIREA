@@ -6,6 +6,7 @@ public class TestStackOnQueue {
 
         myStack.push(39);
         myStack.push(67);
+        myStack.push(84);
 
         System.out.println(myStack);
 
